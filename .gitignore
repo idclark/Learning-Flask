@@ -6,3 +6,10 @@
 /app/views.pyc
 /config.pyc
 /config.py~
+/app/models.pyc
+/app/models.py~
+/db_create.py~
+/db_repository/__init__.pyc
+/db_repository/versions/001_migration.pyc
+/db_repository/versions/002_migration.pyc
+/db_repository/versions/__init__.pyc
