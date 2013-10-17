@@ -47,6 +47,7 @@ def after_login(resp):
         nickname = resp.nickname
         if nickname is None or nickname == "":
             nickname = resp.email.split('@')[0]
+        nickname = User.make_unique_nickname(nickname)
         user = User(nickname=nickname, email=resp.email, role=ROLE_USER)
         db.session.add(user)
         db.session.commit()
@@ -107,4 +108,16 @@ def edit():
         form.nickname.data = g.user.nickname
         form.about_me.data = g.user.about_me
     return render_template('edit.html', form=form)
+
+
+@app.errohandler(404)
+def internal_error(error):
+    return render_template('404.html'), 404
+
+
+@app.errorhandler(500)
+def interanal_error(error):
+    db.session.rollback()
+    return render_template('500.html'), 500
+
 
