@@ -96,7 +96,7 @@ def logout():
 @app.route('/edit', methods=['GET', 'POST'])
 @login_required
 def edit():
-    form = EditForm()
+    form = EditForm(g.user.nickname)
     if form.validate_on_submit():
         g.user.nickname = form.nickname.data
         g.user.about_me = form.about_me.data
@@ -110,7 +110,7 @@ def edit():
     return render_template('edit.html', form=form)
 
 
-@app.errohandler(404)
+@app.errorhandler(404)
 def internal_error(error):
     return render_template('404.html'), 404
 
