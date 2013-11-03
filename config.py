@@ -21,3 +21,4 @@ MAIL_USERNAME = None
 MAIL_PASSWORD = None
 
 ADMINS = ['idclark13@gmail.com']
+POSTS_PER_PAGE = 3
