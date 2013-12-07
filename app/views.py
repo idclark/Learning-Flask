@@ -9,6 +9,7 @@ from config import POSTS_PER_PAGE
 from forms import SearchForm
 from config import MAX_SEARCH_RESULTS
 from emails import follower_notification
+from config import WHOOSH_ENABLED
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
@@ -89,6 +90,7 @@ def before_request():
         db.session.add(g.user)
         db.session.commit()
         g.search_form = SearchForm()
+    g.search_enabled = WHOOSH_ENABLED
 
 
 @app.route('/logout')

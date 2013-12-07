@@ -1,7 +1,11 @@
 from app import db
 from hashlib import md5
-import flask.ext.whooshalchemy as whooshalchemy
 from app import app
+from config import WHOOSH_ENABLED
+
+if WHOOSH_ENABLED:
+    import flask.ext.whooshalchemy as whooshalchemy
+    whooshalchemy.whoosh_index(app, Post)
 
 ROLE_USER = 0
 ROLE_ADMIN = 1
